@@ -4,12 +4,12 @@ import newRequest from "../utils/newRequest";
 import Navbar from '../components/Navbar';
 import { Link, useNavigate } from "react-router-dom";
 function Admin() {
+ // const navigate = useNavigate(); 
     const currentuser = JSON.parse(localStorage.getItem("currentUser"));
-   useEffect(() => {    
-    if(!currentuser) navigate("/login");
-    if(currentuser?.isAdmin) {navigate("/admin");}else{navigate("/");}
-    } , []);
-    const navigate = useNavigate(); 
+  //  useEffect(() => {    
+  //   if(!currentuser) navigate("/login");
+  //   if(currentuser?.isAdmin) {navigate("/admin");}else{navigate("/");}
+  //   } , [currentuser, navigate]);
   const [file, setFile] = useState(null);
 
   const handleFileChange = (e) => {
@@ -18,16 +18,22 @@ function Admin() {
 
   const handleUpload = async () => {
     try {
+      console.log("File selected:", file);
       const formData = new FormData();
       formData.append('file', file);
+      console.log("FormData:", formData);
 
-      await axios.post('http://localhost:3000/api/upload', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
+      try {
+        await axios.post('http://localhost:3000/admin/api/upload', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        });
+        alert('File uploaded successfully!');
+      } catch (error) {
+        console.error(error);
+      }
 
-      alert('File uploaded successfully!');
     } catch (error) {
       console.log(error)
       console.error(error);
