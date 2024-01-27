@@ -5,7 +5,7 @@ import authRoute from './routes/auth.route.js';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import userUploadRoute from './routes/upload.route.js';
-import adminUploadRoute from './routes/admin-upload.route.js'; // Correct the import statement
+import adminUploadRoute from './routes/admin-upload.route.js'; 
 
 const app = express();
 dotenv.config();

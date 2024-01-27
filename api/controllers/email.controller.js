@@ -1,4 +1,3 @@
-// emailController.js
 import nodemailer from 'nodemailer';
 
 const transporter = nodemailer.createTransport({
@@ -15,7 +14,7 @@ const sendEmail = async (mailOptions) => {
     console.log('Email sent successfully');
   } catch (error) {
     console.error('Error sending email:', error);
-    throw error; // Re-throw the error to propagate it
+    throw error; 
   }
 };
 
